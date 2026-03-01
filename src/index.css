@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 230 15% 6%;
+    --foreground: 210 20% 92%;
+
+    --card: 230 15% 10%;
+    --card-foreground: 210 20% 92%;
+
+    --popover: 230 15% 10%;
+    --popover-foreground: 210 20% 92%;
+
+    --primary: 270 80% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 185 80% 50%;
+    --secondary-foreground: 230 15% 6%;
+
+    --muted: 230 15% 14%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 270 80% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 15% 18%;
+    --input: 230 15% 18%;
+    --ring: 270 80% 60%;
+
+    --radius: 0.5rem;
+
+    /* Custom neon tokens */
+    --neon-purple: 270 80% 60%;
+    --neon-cyan: 185 80% 50%;
+    --neon-blue: 220 90% 55%;
+    --neon-pink: 320 80% 55%;
+
+    --glow-purple: 0 0 20px hsl(270 80% 60% / 0.5), 0 0 40px hsl(270 80% 60% / 0.2);
+
+    --font-display: 'Orbitron', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+
+    --sidebar-background: 230 15% 8%;
+    --sidebar-foreground: 210 20% 92%;
+    --sidebar-primary: 270 80% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 230 15% 14%;
+    --sidebar-accent-foreground: 210 20% 92%;
+    --sidebar-border: 230 15% 18%;
+    --sidebar-ring: 270 80% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-hidden;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .text-glow-purple {
+    text-shadow: var(--glow-purple);
+  }
+
+  .glass-tile {
+    background: hsl(var(--card) / 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--neon-purple) / 0.15);
+  }
+
+  .glass-tile:hover {
+    background: hsl(var(--card) / 0.8);
+    border-color: hsl(var(--neon-purple) / 0.4);
+  }
+}
+
+/* Glitch effect */
+@keyframes glitch-1 {
+  0%, 100% { clip-path: inset(0 0 95% 0); transform: translate(0); }
+  10% { clip-path: inset(20% 0 60% 0); transform: translate(-3px, 1px); }
+  20% { clip-path: inset(50% 0 20% 0); transform: translate(3px, -1px); }
+  30% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 2px); }
+  40% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+  50% { clip-path: inset(0 0 95% 0); transform: translate(0); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { clip-path: inset(95% 0 0 0); transform: translate(0); }
+  10% { clip-path: inset(60% 0 20% 0); transform: translate(3px, -1px); }
+  20% { clip-path: inset(20% 0 50% 0); transform: translate(-3px, 1px); }
+  30% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -2px); }
+  40% { clip-path: inset(5% 0 80% 0); transform: translate(-2px, 2px); }
+  50% { clip-path: inset(95% 0 0 0); transform: translate(0); }
+}
+
+@keyframes copy-tooltip {
+  0% { opacity: 0; transform: scale(0.8); }
+  20% { opacity: 1; transform: scale(1.05); }
+  40% { transform: scale(1); }
+  85% { opacity: 1; }
+  100% { opacity: 0; transform: scale(0.95); }
+}
+
+.animate-copy-tooltip {
+  animation: copy-tooltip 1.5s ease-out forwards;
+}
+
+@keyframes particle-float {
+  0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-10vh) translateX(20px); opacity: 0; }
+}
