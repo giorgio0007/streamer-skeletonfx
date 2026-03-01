@@ -3,7 +3,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 const App = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="*" element={<NotFound />} />

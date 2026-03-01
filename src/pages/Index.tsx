@@ -3,6 +3,9 @@ import Preloader from '@/components/Preloader';
 import MetroTile from '@/components/MetroTile';
 import gamingSetup from '@/assets/gaming-setup.webp';
 
+const publicUrl = (path: string) =>
+  `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}`;
+
 const tiles = [
   {
     image: '/ivan/1 YouTube.jpg',
@@ -174,7 +177,7 @@ const Index = () => {
               {tiles.map((tile, i) => (
                 <MetroTile
                   key={tile.label}
-                  image={tile.image}
+                  image={publicUrl(tile.image)}
                   label={tile.label}
                   href={tile.href}
                   copyValue={'copyValue' in tile ? tile.copyValue : undefined}
