@@ -173,7 +173,7 @@ const Index = () => {
 
           {/* Metro Tiles Grid — Windows Phone style */}
           <section className="flex flex-col items-center gap-4">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-10 gap-3 md:gap-3 w-full max-w-6xl overflow-y-auto max-h-[60vh] md:max-h-none py-4 px-1 sm:px-0">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-10 gap-3 md:gap-3 w-full max-w-6xl overflow-y-auto max-h-[60vh] md:max-h-none py-4 px-1 sm:px-0 sm:grid-cols-4">
               {tiles.map((tile, i) => (
                 <MetroTile
                   key={tile.label}
@@ -193,7 +193,7 @@ const Index = () => {
               <br />
               ** Доступ к серверу Discord может быть ограничен на территории РФ.
             </p>
-            <p className="text-[10px] sm:text-xs text-muted-foreground/80 text-center mb-2 mt-auto">
+            <p className="text-[10px] sm:text-xs text-muted-foreground/80 text-center mb-4 mt-auto">
               Девелопмент бай дружбан Ивана —{' '}
               <a
                 href="https://t.me/grgdev"
