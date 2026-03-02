@@ -173,7 +173,7 @@ const Index = () => {
 
           {/* Metro Tiles Grid — Windows Phone style */}
           <section className="flex flex-col items-center gap-4">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-10 gap-3 md:gap-3 w-full max-w-6xl overflow-y-auto max-h-[60vh] md:max-h-none py-4 px-1 sm:px-0 sm:grid-cols-4">
+            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-10 gap-3 md:gap-3 w-full max-w-6xl overflow-y-auto max-h-[60vh] md:max-h-none py-4 px-1 sm:px-0 sm:grid-cols-4">
               {tiles.map((tile, i) => (
                 <MetroTile
                   key={tile.label}
