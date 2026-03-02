@@ -193,7 +193,7 @@ const Index = () => {
               <br />
               ** Доступ к серверу Discord может быть ограничен на территории РФ.
             </p>
-            <p className="text-[10px] sm:text-xs text-muted-foreground/80 text-center mb-4 mt-auto">
+            <p className="text-xs text-muted-foreground/80 text-center mb-4 mt-auto pb-[max(1rem,env(safe-area-inset-bottom,0px))]">
               Девелопмент бай дружбан Ивана —{' '}
               <a
                 href="https://t.me/grgdev"
