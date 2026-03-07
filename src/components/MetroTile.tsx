@@ -36,7 +36,7 @@ const MetroTile = ({
 
   const baseClasses = `glass-tile group relative flex flex-col items-center justify-center rounded-lg p-2 cursor-pointer
     transition-all duration-300 hover:scale-105 animate-glow-pulse overflow-hidden
-    w-full min-w-0 aspect-[2/1] h-[200px] sm:w-[100px] sm:aspect-auto sm:h-[200px]
+    w-full min-w-0 aspect-[2/1] h-[250px] sm:w-[150px] sm:aspect-auto sm:h-[300px]
     ${size === 'wide' ? 'col-span-3' : ''}
     ${visible ? 'animate-tile-in' : 'opacity-0'}`;
 

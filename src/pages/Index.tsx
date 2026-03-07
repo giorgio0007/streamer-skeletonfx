@@ -159,7 +159,7 @@ const Index = () => {
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-4">
           {/* Header */}
           <header
-            className={`mb-8 md:mb-12 text-center ${
+            className={`mb-8 md:mb-8 text-center ${
               loaded ? 'animate-fade-up' : 'opacity-0'
             }`}
           >
@@ -173,7 +173,7 @@ const Index = () => {
 
           {/* Metro Tiles Grid — Windows Phone style */}
           <section className="flex flex-col items-center gap-4">
-            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-10 gap-3 md:gap-3 w-full max-w-6xl overflow-y-auto max-h-[60vh] md:max-h-none py-4 px-1 sm:px-0 sm:grid-cols-4">
+            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-10 w-full max-w-8xl overflow-y-auto max-h-[60vh] md:max-h-none py-4 px-1 sm:px-0 sm:grid-cols-4">
               {tiles.map((tile, i) => (
                 <MetroTile
                   key={tile.label}
@@ -194,7 +194,7 @@ const Index = () => {
               ** Доступ к серверу Discord может быть ограничен на территории РФ.
             </p>
             <p className="text-xs text-muted-foreground/80 text-center mb-4 mt-auto pb-[max(1rem,env(safe-area-inset-bottom,0px))]">
-              Девелопмент бай дружбан Ивана —{' '}
+              2026 Девелопмент бай дружбан Ивана —{' '}
               <a
                 href="https://t.me/grgdev"
                 target="_blank"
