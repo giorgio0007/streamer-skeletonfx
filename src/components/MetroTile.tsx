@@ -34,7 +34,7 @@ const MetroTile = ({
     [copyValue]
   );
 
-  const baseClasses = `glass-tile group relative flex flex-col items-center justify-center rounded-lg p-2 cursor-pointer
+  const baseClasses = `glass-tile group relative flex flex-col items-center justify-center p-2 cursor-pointer
     transition-all duration-300 hover:scale-105 animate-glow-pulse overflow-hidden
     w-full min-w-0 aspect-[2/1] h-[250px] sm:w-[150px] sm:aspect-auto sm:h-[300px]
     ${size === 'wide' ? 'col-span-3' : ''}
@@ -45,11 +45,11 @@ const MetroTile = ({
       <img
         src={image}
         alt={label}
-        className="absolute inset-0 w-full h-full object-contain transition-all duration-300 group-hover:scale-105 rounded-lg opacity-80 hover:opacity-100 object-cover"
+        className="absolute inset-0 w-full h-full object-contain transition-all duration-300 group-hover:scale-105 opacity-80 hover:opacity-100 object-cover"
       />
       {copied && (
         <div
-          className="absolute inset-0 z-20 flex items-center justify-center bg-background/95 backdrop-blur-sm rounded-lg animate-copy-tooltip"
+          className="absolute inset-0 z-20 flex items-center justify-center bg-background/95 backdrop-blur-sm  animate-copy-tooltip"
           role="status"
           aria-live="polite"
         >
