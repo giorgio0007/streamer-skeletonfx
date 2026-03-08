@@ -17,8 +17,8 @@ jobs:
       - name: Deploy Container
         run: |
           # Останавливаем старый контейнер, если он есть
-          docker stop landing-site  true
-          docker rm landing-site  true
+          docker stop landing-site || true
+          docker rm landing-site || true
 
           # Запускаем новый с лейблами для Traefik
           docker run -d \
