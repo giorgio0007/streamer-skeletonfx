@@ -27,9 +27,9 @@ jobs:
             --network proxy \
             --label "traefik.enable=true" \
             --label "traefik.http.routers.landing.rule=Host(\`skeletonfx.ru\`)" \
-            --label "traefik.http.routers.landing.entrypoints=web" \
+            --label "traefik.http.routers.landing.entrypoints=http" \
             --label "traefik.http.routers.landing-secure.rule=Host(\`skeletonfx.ru\`)" \
-            --label "traefik.http.routers.landing-secure.entrypoints=websecure" \
+            --label "traefik.http.routers.landing-secure.entrypoints=https" \
             --label "traefik.http.routers.landing-secure.tls=true" \
             --label "traefik.http.routers.landing-secure.tls.certresolver=cloudflare" \
             --label "traefik.http.services.landing.loadbalancer.server.port=80" \
