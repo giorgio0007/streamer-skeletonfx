@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, type MouseEvent } from 'react';
 import Preloader from '@/components/Preloader';
 import MetroTile from '@/components/MetroTile';
 import gamingSetup from '@/assets/gaming-setup.webp';
@@ -22,7 +22,7 @@ const tiles = [
   {
     image: '/ivan/3 VK Видео Live.jpg',
     label: 'VK Видео Live',
-    href: 'https://live.vkvideo.ru//skeletonfx',
+    href: 'https://live.vkvideo.ru/skeletonfx',
     alt: 'VK Видео Live',
   },
   {
@@ -133,6 +133,7 @@ const tiles = [
 
 const Index = () => {
   const [loaded, setLoaded] = useState(false);
+  const [showMirModal, setShowMirModal] = useState(false);
 
   const handlePreloaderComplete = useCallback(() => {
     setLoaded(true);
@@ -180,7 +181,19 @@ const Index = () => {
                   image={publicUrl(tile.image)}
                   label={tile.label}
                   href={tile.href}
-                  copyValue={'copyValue' in tile ? tile.copyValue : undefined}
+                  copyValue={
+                    'copyValue' in tile && tile.alt !== 'Мир'
+                      ? tile.copyValue
+                      : undefined
+                  }
+                  onClick={
+                    tile.alt === 'Мир'
+                      ? (e: MouseEvent) => {
+                          e.preventDefault();
+                          setShowMirModal(true);
+                        }
+                      : undefined
+                  }
                   delay={200 + i * 80}
                   visible={loaded}
                 />
@@ -217,6 +230,37 @@ const Index = () => {
           </section>
         </div>
       </main>
+
+      {showMirModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/70"
+            onClick={() => setShowMirModal(false)}
+            aria-label="Закрыть окно оплаты"
+          />
+          <div className="relative z-10 mx-4 w-full max-w-sm rounded-xl p-4 sm:p-6 shadow-2xl flex flex-col items-center text-center gap-4 animate-fade-up">
+            <button
+              type="button"
+              onClick={() => setShowMirModal(false)}
+              className="absolute right-3 top-2 text-4xl sm:text-4xl leading-none text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Закрыть"
+            >
+              ×
+            </button>
+            <div className="font-display text-xs sm:text-sm font-bold text-neon-cyan drop-shadow-[0_0_10px_hsl(185_80%_50%_/_0.9)]">
+              НОМЕР КАРТЫ СКОПИРОВАН
+              <br />
+              ИЛИ ВОСПОЛЬЗУЙСЯ QR КОДОМ
+            </div>
+            <img
+              src={publicUrl('/ivan/qr t bankj.jpg')}
+              alt="QR код для оплаты по карте Мир"
+              className="w-[180px] max-w-[80%] h-auto rounded-md drop-shadow-[0_0_10px_hsl(185_80%_50%_/_0.9)]"
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };
