@@ -1,10 +1,13 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, type ReactNode } from 'react';
 
 interface MetroTileProps {
   image: string;
   label: string;
   href: string;
   copyValue?: string;
+  copySuccessContent?: ReactNode;
+  persistCopySuccess?: boolean;
+  onClick?: (e: React.MouseEvent) => void;
   delay: number;
   size?: 'normal' | 'wide';
   visible: boolean;
@@ -15,6 +18,9 @@ const MetroTile = ({
   label,
   href,
   copyValue,
+  copySuccessContent,
+  persistCopySuccess = false,
+  onClick,
   delay,
   size = 'normal',
   visible,
@@ -25,13 +31,22 @@ const MetroTile = ({
     (e: React.MouseEvent) => {
       if (copyValue) {
         e.preventDefault();
+        if (persistCopySuccess && copied) {
+          setCopied(false);
+          return;
+        }
         navigator.clipboard.writeText(copyValue).then(() => {
           setCopied(true);
-          setTimeout(() => setCopied(false), 1500);
+          if (!persistCopySuccess) {
+            setTimeout(() => setCopied(false), 1500);
+          }
         });
       }
+      if (onClick) {
+        onClick(e);
+      }
     },
-    [copyValue]
+    [copyValue, copied, persistCopySuccess, onClick]
   );
 
   const baseClasses = `glass-tile group relative flex flex-col items-center justify-center p-2 cursor-pointer
@@ -47,17 +62,20 @@ const MetroTile = ({
         alt={label}
         className="absolute inset-0 w-full h-full object-contain transition-all duration-300 group-hover:scale-105 opacity-80 hover:opacity-100 object-cover"
       />
-      {copied && (
-        <div
-          className="absolute inset-0 z-20 flex items-center justify-center bg-background/95 backdrop-blur-sm  animate-copy-tooltip"
-          role="status"
-          aria-live="polite"
-        >
+      <div
+        className={`absolute inset-0 z-20 flex items-center justify-center bg-background/95 backdrop-blur-sm pointer-events-none transition-all duration-300 ease-out ${
+          copied ? 'opacity-100 scale-100' : 'opacity-0 scale-[0.98]'
+        } ${persistCopySuccess ? '' : copied ? 'animate-copy-tooltip' : ''}`}
+        role={copied ? 'status' : undefined}
+        aria-live={copied ? 'polite' : 'off'}
+        aria-hidden={!copied}
+      >
+        {copySuccessContent ?? (
           <span className="font-display text-xs font-bold text-neon-cyan drop-shadow-[0_0_10px_hsl(185_80%_50%_/_0.9)]">
             Номер скопирован
           </span>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 
@@ -82,6 +100,7 @@ const MetroTile = ({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={onClick}
       className={baseClasses}
       style={{
         animationDelay: visible ? `${delay}ms` : '0ms',
